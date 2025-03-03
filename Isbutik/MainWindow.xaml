@@ -13,7 +13,7 @@
                     <Button x:Name="btnBestil" Content="Bestil" HorizontalAlignment="Left" Margin="638,365,0,0" VerticalAlignment="Top" RenderTransformOrigin="14.105,10.215" Width="83" Height="41" BorderThickness="2,2,2,2" FontSize="25" Grid.Column="1"/>
                     <TextBlock x:Name="tbkVaelg" HorizontalAlignment="Left" Margin="193,157,0,0" TextWrapping="Wrap" Text="Vælg antal" VerticalAlignment="Top" Width="56" RenderTransformOrigin="1.208,-0.875" Grid.Column="1"/>
                     <Button x:Name="btnTilføj"  Content="Tilføj -&gt;" HorizontalAlignment="Left" Margin="284,178,0,0" VerticalAlignment="Top" Width="70" Click="btnTilføj_Click" Grid.Column="1"/>
-                    <DataGrid ItemsSource="{Binding BestillingsListe}" x:Name="dgbBestilling" HorizontalAlignment="Left" Height="311" Margin="359,37,0,0" VerticalAlignment="Top" Width="362" SelectionChanged="DataGrid_SelectionChanged" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="1">
+                    <DataGrid ItemsSource="{Binding IsButikFunc.BestillingsListe}" x:Name="dgbBestilling" HorizontalAlignment="Left" Height="311" Margin="359,37,0,0" VerticalAlignment="Top" Width="362" SelectionChanged="DataGrid_SelectionChanged" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="1">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Navn" Binding="{Binding Navn}" />
                             <DataGridTextColumn Header="Antal" Binding="{Binding Antal}" />
@@ -26,12 +26,12 @@
                     </DataGrid>
                     <TextBlock x:Name="tbkPris"  HorizontalAlignment="Left" Margin="81,267,0,0" TextWrapping="Wrap" Text="Pris kr:" VerticalAlignment="Top"/>
                     <TextBox x:Name="tbxAntal" HorizontalAlignment="Left" Margin="193,178,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="56" Height="18" TextChanged="tbxAntal_TextChanged" LostFocus="tbxAntal_LostFocus" Grid.Column="1" />
-                    <TextBlock x:Name="tbkIsboden" HorizontalAlignment="Left" Margin="58,132,0,0" TextWrapping="Wrap" Text="tekstfelt du ikke kan indtaste, vil isboden være den mest populære" VerticalAlignment="Top" Height="135" Width="116" Grid.ColumnSpan="2"/>
-                    <ComboBox x:Name="Vælg_is" ItemsSource="{Binding Vareoversigt}" HorizontalAlignment="Left" Margin="58,95,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="Vælg_is_SelectionChanged" DisplayMemberPath="Navn" Grid.ColumnSpan="2"/>
+                    <TextBlock x:Name="tbkIsboden" Text="{Binding ValgteVare.Beskrivelse}" HorizontalAlignment="Left" Margin="58,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="135" Width="116" Grid.ColumnSpan="2"/>
+                    <ComboBox x:Name="Vælg_is" ItemsSource="{Binding IsButikFunc.Vareoversigt}" HorizontalAlignment="Left" Margin="58,95,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="Vælg_is_SelectionChanged" DisplayMemberPath="Navn" Grid.ColumnSpan="2"/>
                     <TextBlock x:Name="tbkBestillingsseddel" HorizontalAlignment="Left" Margin="359,16,0,0" TextWrapping="Wrap" Text="Bestillingsseddel" VerticalAlignment="Top" Width="362" Grid.Column="1"/>
                     <Button x:Name="tbkFjern" Content="Fjern &lt;-" HorizontalAlignment="Left" Margin="284,203,0,0" VerticalAlignment="Top" Width="70" Click="btnFjern_Click" Grid.Column="1"/>
-                    <TextBlock x:Name="tbkPrice" HorizontalAlignment="Left" Margin="55,267,0,0" TextWrapping="Wrap" DataContext="{Binding Isbutik.MainWindow}" Text="{Binding ValgteVare}" VerticalAlignment="Top" Width="30" Grid.Column="1"/>
-                    <TextBlock x:Name="TotalPrisInt" Text="{Binding Path=TotalPris}" HorizontalAlignment="Left" Margin="238,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="13" Width="81" Grid.Column="1"/>
+                    <TextBlock x:Name="tbkPrice" Text="{Binding ValgteVare.Price}" HorizontalAlignment="Left" Margin="121,267,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="53"/>
+                    <TextBlock x:Name="TotalPrisInt" Text="{Binding Path=IsButikFunc.TotalPris}" HorizontalAlignment="Left" Margin="238,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="13" Width="81" Grid.Column="1"/>
                     <TextBlock x:Name="TotalPrisTxt" HorizontalAlignment="Left" Margin="153,305,0,0" TextWrapping="Wrap" Text="Total Pris kr." VerticalAlignment="Top" Height="13" Width="80" Grid.Column="1"/>
                     <CheckBox x:Name="FjernIs" Content="Fjern antal is" HorizontalAlignment="Left" Margin="173,208,0,0" VerticalAlignment="Top" Height="15" Width="96" Grid.Column="1"/>
                     <TextBox x:Name="tbkBemærkninger" Text="" HorizontalAlignment="Left" Margin="193,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Height="128"/>
@@ -51,7 +51,7 @@
                     <TextBlock HorizontalAlignment="Left" Margin="10,13,0,0" TextWrapping="Wrap" Text="Is fra Isboden" VerticalAlignment="Top" Width="120"/>
 
                     <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="285,317,0,0" VerticalAlignment="Top" Height="23" Width="60" Click="btnCancel_Click" Grid.Column="2"/>
-                    <DataGrid ItemsSource="{Binding Vareoversigt}" x:Name="dgbBestillingInfomation" HorizontalAlignment="Left" Height="191" Margin="10,29,0,0" VerticalAlignment="Top" Width="362" SelectionChanged="DataGrid_SelectionChanged" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid ItemsSource="{Binding IsButikFunc.Vareoversigt}" x:Name="dgbBestillingInfomation" HorizontalAlignment="Left" Height="191" Margin="10,29,0,0" VerticalAlignment="Top" Width="362" SelectionChanged="DataGrid_SelectionChanged" AutoGenerateColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Navn" Binding="{Binding Navn}" />
                             <DataGridTextColumn Header="Pr. Is" Binding="{Binding Price}" />

@@ -23,10 +23,9 @@ namespace KundeIsbutik
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = IsButikFunc;
+            DataContext = this;
 
             NulstilKundedialog();
-            TotalPrisInt.Text = $"{IsButikFunc.TotalPris}";
         }
 
         public void btnTilføj_Click(object sender, RoutedEventArgs e)
@@ -35,11 +34,6 @@ namespace KundeIsbutik
             // Nu skal vi finde ud af om du i forvejen har en bestilling med den samme is (Vare) 
             try
             {
-                // Kig i listen
-                //if (tbkBemærkninger.Text != )
-                //{
-
-                //}
                 int Antal = int.Parse(tbxAntal.Text);
                 IsButikFunc.OpretEllerOpdaterBestilling(Vælg_is.SelectedItem as Vare, Antal, $"{tbkBemærkninger.Text}");
             }
@@ -49,7 +43,7 @@ namespace KundeIsbutik
             }
 
             NulstilKundedialog();
-            TotalPrisInt.Text = $"{IsButikFunc.TotalPris}";
+            //TotalPrisInt.Text = $"{IsButikFunc.TotalPris}";
         }
 
         // ItemsSource="{Binding ElementName=textBlock, Mode=OneWay}"
@@ -94,7 +88,7 @@ namespace KundeIsbutik
             }
             finally
             {
-                dgbBestilling.Items.Refresh();
+                //dgbBestilling.Items.Refresh();
             }
         }
 
@@ -116,8 +110,8 @@ namespace KundeIsbutik
             tbxAntal.Text = "1";
             tbkBemærkninger.Text = "";
             Vælg_is.SelectedItem = null;
-            Vælg_is.Items.Refresh();
-            dgbBestilling.Items.Refresh();
+            //Vælg_is.Items.Refresh();
+            //dgbBestilling.Items.Refresh();
         }
     }
 }

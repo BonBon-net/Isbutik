@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -7,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace IsbutikDataClasses
 {
-    public class Bestilling
+    public class Bestilling : INotifyPropertyChanged
     {
         public Bestilling(Vare vare, int antal, string bemærkninger)
         {
             if (vare == null)
             {
                 throw new Exception("Manglende is i bestilling");
-            } 
+            }
             Vare = vare;
             Antal = antal;
             Bemærkninger = bemærkninger;
@@ -32,14 +33,25 @@ namespace IsbutikDataClasses
         {
             get
             {
-                return Vare.Price; 
-            } 
-        } 
+                return Vare.Price;
+            }
+        }
 
+        private int antal;
         public int Antal
         {
-            get;
-            set;
+            get
+            {
+                return antal;
+            }
+            set
+            {
+                if (PropertyChanged != null)
+                {
+                    PropertyChanged(this, new PropertyChangedEventArgs(nameof(Antal)));
+                }
+                antal = value;
+            }
         }
 
         public Vare Vare
@@ -50,15 +62,15 @@ namespace IsbutikDataClasses
 
         public string Navn
         {
-            get 
+            get
             {
-                return Vare.Navn; 
+                return Vare.Navn;
             }
         }
 
         public decimal PriceBestilling
         {
-            get { return Vare.Price * Antal; } 
+            get { return Vare.Price * Antal; }
         }
 
         public decimal PrisMedMoms
@@ -69,17 +81,19 @@ namespace IsbutikDataClasses
             }
         }
 
-        public decimal Fortjeneste 
+        public decimal Fortjeneste
         {
             get
             {
-                return  Antal * Vare.FortjenestePrIs; 
+                return Antal * Vare.FortjenestePrIs;
             }
         }
 
-        public decimal Moms 
+        public decimal Moms
         {
-            get { return PriceBestilling * 0.25m; } 
-        } 
+            get { return PriceBestilling * 0.25m; }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
     }
 }

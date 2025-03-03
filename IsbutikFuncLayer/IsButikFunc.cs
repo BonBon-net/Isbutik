@@ -22,8 +22,8 @@ namespace IsbutikFuncLayer
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
-            }
-        }
+            } 
+        } 
 
         public ObservableCollection<Bestilling> BestillingsListe
         {
@@ -33,7 +33,7 @@ namespace IsbutikFuncLayer
             }
         }
 
-        public List<Vare> Vareoversigt
+        public ObservableCollection<Vare> Vareoversigt
         {
             get
             {
@@ -49,11 +49,10 @@ namespace IsbutikFuncLayer
                 for (int i = 0; i < BestillingsListe.Count; i++)
                 {
                     totalSum = totalSum + BestillingsListe[i].PrisMedMoms;
-                }
+                } 
                 return totalSum;
             }
         }
-
 
         public void OpretEllerOpdaterBestilling(Vare vare, int antal, string bem)
         {
@@ -65,7 +64,8 @@ namespace IsbutikFuncLayer
                     b.Antal = b.Antal + antal;
                     IsAlreadyInBestillingsListe = true;
                 }
-            }
+                RaisePropertyChanged(nameof(BestillingsListe));
+            } 
             if (!IsAlreadyInBestillingsListe)
             {
                 //string tbkBemærkninger2 = $"{tbkBemærkninger.Text}";
@@ -73,6 +73,7 @@ namespace IsbutikFuncLayer
                 BestillingsListe.Add(bestilling);
             }
             RaisePropertyChanged(nameof(TotalPris));
+            
         }
 
         public void SletEllerOpdaterBestilling(Bestilling bestilling, int antal)
@@ -94,7 +95,7 @@ namespace IsbutikFuncLayer
             {
                 SletBestillingAntal(bestilling, antal);
             }
-
+            RaisePropertyChanged(nameof(TotalPris));
         }
 
         void SletBestillingAntal(Bestilling bestilling, int antal)

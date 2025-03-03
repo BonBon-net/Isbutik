@@ -1,5 +1,7 @@
 ﻿using IsbutikDataClasses;
 using IsbutikFuncLayer;
+using System;
+using System.ComponentModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,16 +18,39 @@ namespace Isbutik
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public IsButikFunc IsButikFunc { get; set; } = new IsButikFunc();
 
-        public Vare ValgteVare { get; set; }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        private void RaisePropertyChanged(string propName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
+        }
+
+        private Vare _ValgteVare;
+        public Vare ValgteVare
+        {
+            get
+            {
+                return _ValgteVare;
+            }
+            set
+            {
+                _ValgteVare = value;
+                RaisePropertyChanged(nameof(ValgteVare));
+            }
+        }
 
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = IsButikFunc;
+            DataContext = this;
 
             NulstilKundedialog();
             //TotalPrisInt.Text = $"{IsButikFunc.TotalPris}";
@@ -38,6 +63,14 @@ namespace Isbutik
         public void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             VareKnapper();
+        }
+
+        private void Vælg_is_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Vælg_is.SelectedIndex >= 0)
+            {
+                ValgteVare = Vælg_is.SelectedItem as Vare;
+            }
         }
 
         public void btnTilføj_Click(object sender, RoutedEventArgs e)
@@ -57,18 +90,6 @@ namespace Isbutik
 
             NulstilKundedialog();
             //TotalPrisInt.Text = $"{IsButikFunc.TotalPris}";
-        }
-
-        // ItemsSource="{Binding ElementName=textBlock, Mode=OneWay}"
-        public void Vælg_is_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ValgteVare = (Vælg_is.SelectedItem as Vare);
-
-            //if (vare != null)
-            //{
-            //    tbkPrice.Text = vare.Price.ToString();
-            //    tbkIsboden.Text = vare.Beskrivelse;
-            //}
         }
 
         public void btnFjern_Click(object sender, RoutedEventArgs e)
@@ -100,6 +121,8 @@ namespace Isbutik
             }
             finally
             {
+                //RaisePropertyChanged(nameof(IsButikFunc.TotalPris));
+                //TotalPrisInt.Text = $"{IsButikFunc.TotalPris}";
                 //dgbBestilling.Items.Refresh();
             }
         }
@@ -108,7 +131,6 @@ namespace Isbutik
         {
             try
             {
-                int antal = int.Parse(tbxAntal.Text);
                 if ((dgbBestillingInfomation.SelectedItem) != null)
                 {
                     MessageBoxResult answer = MessageBox.Show("Er du sikker",
@@ -136,7 +158,7 @@ namespace Isbutik
             }
             finally
             {
-                dgbBestillingInfomation.Items.Refresh();
+                //dgbBestillingInfomation.Items.Refresh();
             }
         }
 
@@ -239,26 +261,26 @@ namespace Isbutik
 
         }
 
-        void NulstilVareFelter()
+        public void NulstilVareFelter()
         {
             tbkIsbodenBeskrivelse.Text = "";
             tbkPriseCost.Text = "";
             tbkIsNavn.Text = "";
             tbkIndkøbspris.Text = "";
             dgbBestillingInfomation.SelectedItem = null;
-            dgbBestillingInfomation.Items.Refresh();
-            dgbBestillingInfomation.Items.Refresh();
+            //dgbBestillingInfomation.Items.Refresh();
+            //dgbBestillingInfomation.Items.Refresh();
         }
 
-        void NulstilKundedialog()
+        public void NulstilKundedialog()
         {
             FjernIs.IsChecked = false;
-            tbkPrice.Text = "0";
-            tbkIsboden.Text = "";
+            //tbkPrice.Text = "0";
+            //tbkIsboden.Text = "";
             tbxAntal.Text = "";
             tbkBemærkninger.Text = "";
             Vælg_is.SelectedItem = null;
-            Vælg_is.Items.Refresh();
+            //Vælg_is.Items.Refresh();
             //dgbBestilling.Items.Refresh();
         }
     }

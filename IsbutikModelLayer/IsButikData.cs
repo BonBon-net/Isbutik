@@ -14,7 +14,7 @@ namespace IsbutikDataLayer
     public class IsButikData
     {
         public ObservableCollection<Bestilling> BestillingsListe { get; set; } = new ObservableCollection<Bestilling>();
-        public List<Vare> Vareoversigt { get; set; } = new List<Vare>();
+        public ObservableCollection<Vare> Vareoversigt { get; set; } = new ObservableCollection<Vare>();
 
         public IsButikData()
         {
@@ -62,7 +62,6 @@ namespace IsbutikDataLayer
 
         public void OpdaterVare(Vare vare, string navn, string beskrivelse, decimal Pris, decimal Indkøbspris)
         {
-            NyBeskrivelse(vare);
             vare.Navn = navn;
             vare.Beskrivelse = beskrivelse;
             vare.Price = Pris;
@@ -71,13 +70,8 @@ namespace IsbutikDataLayer
 
         public void SletVare(Vare vare)
         {
-            //Vareoversigt.Remove(vare.Beskrivelse);
-            //Vareoversigt.
-        }
-
-        void NyBeskrivelse(Vare vare)
-        {
             Vareoversigt.Remove(vare);
         }
+
     }
 }
