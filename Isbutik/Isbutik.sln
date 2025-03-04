@@ -5,13 +5,15 @@ VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Isbutik", "Isbutik.csproj", "{947644B6-4EE3-4C26-BC76-212C0FF41AC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsbutikDataClasses", "..\IsbutikDataClasses\IsbutikDataClasses.csproj", "{DAA8E461-0DD8-4295-A166-628E3C66C365}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IsbutikDataClasses", "..\IsbutikDataClasses\IsbutikDataClasses.csproj", "{DAA8E461-0DD8-4295-A166-628E3C66C365}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsbutikFuncLayer", "..\IsbutikFuncLayer\IsbutikFuncLayer.csproj", "{5A6D26F4-C98C-4969-8589-FC883D25D3E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IsbutikFuncLayer", "..\IsbutikFuncLayer\IsbutikFuncLayer.csproj", "{5A6D26F4-C98C-4969-8589-FC883D25D3E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsbutikDataLayer", "..\IsbutikModelLayer\IsbutikDataLayer.csproj", "{9240E3DF-4558-4D4F-AEDA-74A647AB7ABC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IsbutikDataLayer", "..\IsbutikModelLayer\IsbutikDataLayer.csproj", "{9240E3DF-4558-4D4F-AEDA-74A647AB7ABC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KundeIsbutik", "..\KundeIsbutik\KundeIsbutik.csproj", "{7EBCA19F-72F9-4BD5-97D4-51CBEA81B6B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KundeIsbutik", "..\KundeIsbutik\KundeIsbutik.csproj", "{7EBCA19F-72F9-4BD5-97D4-51CBEA81B6B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unit test", "..\Unit test\Unit test.csproj", "{8B3297BC-47A9-42E1-9528-228D10D9D7A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{7EBCA19F-72F9-4BD5-97D4-51CBEA81B6B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EBCA19F-72F9-4BD5-97D4-51CBEA81B6B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EBCA19F-72F9-4BD5-97D4-51CBEA81B6B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B3297BC-47A9-42E1-9528-228D10D9D7A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B3297BC-47A9-42E1-9528-228D10D9D7A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B3297BC-47A9-42E1-9528-228D10D9D7A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B3297BC-47A9-42E1-9528-228D10D9D7A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

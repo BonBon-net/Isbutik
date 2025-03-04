@@ -54,6 +54,10 @@ namespace IsbutikDataClasses
             }
         }
 
+        //unit = ental
+        //units = flertal
+        //unity = en samling af units
+
         public Vare Vare
         {
             get;
