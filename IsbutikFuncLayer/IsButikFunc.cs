@@ -54,13 +54,21 @@ namespace IsbutikFuncLayer
             }
         }
 
-        public void OpretEllerOpdaterBestilling(Vare vare, int antal, string bem)
+        public int BestillingsListeCount()
         {
+            int count = BestillingsListe.Count;
+            return count;
+        }
+
+        public Bestilling OpretEllerOpdaterBestilling(Vare vare, int antal, string bem)
+        {
+            Bestilling bestilling = null;
             bool IsAlreadyInBestillingsListe = false;
             foreach (Bestilling b in BestillingsListe)
             {
                 if (b.Vare == vare)
                 {
+                    bestilling = b;
                     b.Antal = b.Antal + antal;
                     IsAlreadyInBestillingsListe = true;
                 }
@@ -69,11 +77,11 @@ namespace IsbutikFuncLayer
             if (!IsAlreadyInBestillingsListe)
             {
                 //string tbkBemærkninger2 = $"{tbkBemærkninger.Text}";
-                Bestilling bestilling = new Bestilling(vare, antal, bem);
+                bestilling = new Bestilling(vare, antal, bem);
                 BestillingsListe.Add(bestilling);
             }
             RaisePropertyChanged(nameof(TotalPris));
-            
+            return bestilling;
         }
 
         public void SletEllerOpdaterBestilling(Bestilling bestilling, int antal)
@@ -108,9 +116,9 @@ namespace IsbutikFuncLayer
             IsButikData.SletBestilling(bestilling);
         }
 
-        public void OpretVare(string navn, string beskrivelse, decimal Pris, decimal Indkøbspris)
+        public Vare OpretVare(string navn, string beskrivelse, decimal Pris, decimal Indkøbspris)
         {
-            IsButikData.OpretVare(navn, beskrivelse, Pris, Indkøbspris);
+            return IsButikData.OpretVare(navn, beskrivelse, Pris, Indkøbspris);
         }
 
         public void OpdaterVare(Vare vare, string navn, string beskrivelse, decimal Pris, decimal Indkøbspris)

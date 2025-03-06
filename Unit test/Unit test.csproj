@@ -18,6 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IsbutikDataClasses\IsbutikDataClasses.csproj" />
+    <ProjectReference Include="..\IsbutikFuncLayer\IsbutikFuncLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
 

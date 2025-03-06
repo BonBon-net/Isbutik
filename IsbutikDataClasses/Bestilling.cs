@@ -74,7 +74,7 @@ namespace IsbutikDataClasses
 
         public decimal PriceBestilling
         {
-            get { return Vare.Price * Antal; }
+            get { return Vare.Price * Antal; } 
         }
 
         public decimal PrisMedMoms

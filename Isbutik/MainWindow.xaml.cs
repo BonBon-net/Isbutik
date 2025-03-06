@@ -180,39 +180,7 @@ namespace Isbutik
             }
             catch (Exception ex)
             {
-                string message = "";
-                int BoolKendtFejl = 0;
-                if (tbkIsbodenBeskrivelse.Text == "")
-                {
-                    BoolKendtFejl = 1;
-                    message = message + "Fejl i: Beskrivelse";
-                    message = message + " - der finde's ikke txt i Beskrivelse'n";
-                }
-                if (decimal.Parse(tbkPriseCost.Text) <= 0)
-                {
-                    BoolKendtFejl = 1;
-                    message = message + ", Fejl i: Sælg af is";
-                    message = message + " - Is cost skal være mist 1 i box'en";
-                }
-                if (tbkIsNavn.Text == "")
-                {
-                    BoolKendtFejl = 1;
-                    message = message + ", Fejl i: Navngivning af Is";
-                    message = message + " - Is'en skal have et navn";
-                }
-                if (decimal.Parse(tbkIndkøbspris.Text) <= 0)
-                {
-                    BoolKendtFejl = 1;
-                    message = message + "Fejl i: Indkøbspris";
-                    message = message + " - der skal være en Indkøbspris til is'en";
-                }
-                if (BoolKendtFejl == 0)
-                {
-                    BoolKendtFejl = 2;
-                    message = "ukendt fejl";
-                }
-                message = message = ".";
-                MessageBox.Show($"{message}", ex.Message);
+                CatchMessageBox_btnAdd_Click(ex);
             }
         }
 
@@ -282,6 +250,44 @@ namespace Isbutik
             Vælg_is.SelectedItem = null;
             //Vælg_is.Items.Refresh();
             //dgbBestilling.Items.Refresh();
+        }
+
+        public void CatchMessageBox_btnAdd_Click(Exception ex)
+        {
+            bool BoolKendtFejl = false;
+            if (tbkIsbodenBeskrivelse.Text == "")
+            {
+                BoolKendtFejl = true;
+                string message = "Fejl i: Beskrivelse";
+                message = $"{message}" + " - der finde's ikke txt i Beskrivelse'n";
+                MessageBox.Show($"{message}.", ex.Message);
+            }
+            if (decimal.Parse(tbkPriseCost.Text) <= 0)
+            {
+                BoolKendtFejl = true;
+                string message = "Fejl i: Sælg af is";
+                message = $"{message}" + " - Is cost skal være mist 1 i box'en";
+                MessageBox.Show($"{message}.", ex.Message);
+            }
+            if (tbkIsNavn.Text == "")
+            {
+                BoolKendtFejl = true;
+                string message = "Fejl i: Navngivning af Is";
+                message = $"{message}" + " - Is'en skal have et navn";
+                MessageBox.Show($"{message}.", ex.Message);
+            }
+            if (decimal.Parse(tbkIndkøbspris.Text) <= 0)
+            {
+                BoolKendtFejl = true;
+                string message = "Fejl i: Indkøbspris";
+                message = $"{message}" + " - der skal være en Indkøbspris til is'en";
+                MessageBox.Show($"{message}.", ex.Message);
+            }
+            if (!BoolKendtFejl)
+            {
+                string message = "ukendt fejl";
+                MessageBox.Show($"{message}.", ex.Message);
+            }
         }
     }
 }

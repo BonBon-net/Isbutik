@@ -40,6 +40,7 @@ namespace KundeIsbutik
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Fejl i bestilling");
+                //CatchMessageBox(ex);
             }
 
             NulstilKundedialog();
@@ -113,5 +114,7 @@ namespace KundeIsbutik
             //Vælg_is.Items.Refresh();
             //dgbBestilling.Items.Refresh();
         }
+
+
     }
 }
